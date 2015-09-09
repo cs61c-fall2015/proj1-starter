@@ -94,7 +94,7 @@ void simple_log_test(void)
     run_commit(&commit_list, "THIS IS BEAR TERRITORY!2");
     run_commit(&commit_list, "THIS IS BEAR TERRITORY!3");
 
-    retval = beargit_log();
+    retval = beargit_log(10);
     CU_ASSERT(0==retval);
 
     struct commit* cur_commit = commit_list;
@@ -123,10 +123,6 @@ void simple_log_test(void)
 
       cur_commit = cur_commit->next;
     }
-
-    // Last line is empty
-    CU_ASSERT_PTR_NOT_NULL(fgets(line, LINE_SIZE, fstdout));
-    CU_ASSERT(!strcmp(line,"\n"));
 
     CU_ASSERT_PTR_NULL(fgets(line, LINE_SIZE, fstdout));
 
